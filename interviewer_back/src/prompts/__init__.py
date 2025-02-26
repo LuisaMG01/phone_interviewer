@@ -1,0 +1,1 @@
+from .es import AI_QUESTION_PROMPT, USER_ANSWER_PROMPT

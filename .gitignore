@@ -1,0 +1,28 @@
+# Ignorar entornos virtuales en cualquier parte del proyecto
+**/venv/
+**/env/
+
+# Ignore Python compiled files
+**__pycache__/
+*.py[cod]
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# Ignore environment variables
+.env
+*.env
+
+# Ignore dependencies (if using pip)
+pip-log.txt
+pip-delete-this-directory.txt
