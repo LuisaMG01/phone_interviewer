@@ -11,24 +11,28 @@ class InterviewerService:
         self.answered_questions = set()
 
     def _get_ai_question(self, question: Dict[str, Any], vacant: str) -> str:
-        message = AI_QUESTION_PROMPT.format(question=question['titleQuestion'], vacant=vacant)
+        message = AI_QUESTION_PROMPT.format(question=question, vacant=vacant)
         try:
             llm_response = self.llm.invoke([HumanMessage(content=message)])
-            return llm_response.content.strip() if llm_response else question['titleQuestion']
+            return llm_response.content.strip() if llm_response else question
         except Exception as e:
             print(f"Error con LLM: {e}")
-            return question['titleQuestion']
+            return question
 
-    def conduct_interview(self, questions: Dict[str, Any]) -> list:
-        vacant = questions["name"]
+    def conduct_interview(self, vacant, questions: Dict[str, Any]) -> list:
+        vacant = vacant
         results = []
         
         print(f"\nIniciando entrevista para la vacante: {vacant}\n")
         
-        remaining_questions = [q for q in questions["questions"] if q["id"] not in self.answered_questions]
-        
+        remaining_questions =  []
+        for q in questions:
+            remaining_questions.append(q['titleQuestion'])
+
+        print(remaining_questions)
         while remaining_questions:
             current_question = remaining_questions[0]
+            print(current_question)
             ai_question = self._get_ai_question(current_question, vacant)
             print(f"\n📝 {ai_question}")
 

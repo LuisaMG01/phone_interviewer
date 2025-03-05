@@ -1,16 +1,6 @@
 import difflib
 
 def evaluate_response(user_response: str, possible_answers: list) -> dict:
-    """
-    Evalúa la respuesta del usuario en función de las posibles respuestas.
-
-    Args:
-        user_response (str): Respuesta del usuario.
-        possible_answers (list): Lista de respuestas esperadas.
-
-    Returns:
-        dict: Resultado con la respuesta más similar y el puntaje de similitud.
-    """
     if not user_response or not possible_answers:
         return {"best_match": None, "score": 0.0}
 
