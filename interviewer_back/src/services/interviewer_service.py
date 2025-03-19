@@ -1,9 +1,10 @@
 from typing import Dict, Any, List
+from langchain_core.messages import HumanMessage
+
 from ..config import get_llm_connection
 from .response_generator import get_user_response
 from .response_evaluator import evaluate_response
 from ..prompts import AI_QUESTION_PROMPT
-from langchain_core.messages import HumanMessage
 
 class InterviewerService:
     def __init__(self):
@@ -16,14 +17,14 @@ class InterviewerService:
             llm_response = self.llm.invoke([HumanMessage(content=message)])
             return llm_response.content.strip() if llm_response else question
         except Exception as e:
-            print(f"Error con LLM: {e}")
+            print(f"LLM Error: {e}")
             return question
 
     def conduct_interview(self, vacant, questions: Dict[str, Any]) -> list:
         vacant = vacant
         results = []
         
-        print(f"\nIniciando entrevista para la vacante: {vacant}\n")
+        print(f"\nStarting interview: {vacant}\n")
         
         remaining_questions =  []
         for q in questions:
